@@ -16,9 +16,9 @@ def superposicion_loop(lista_1, lista_2):
 def superposicion_set(lista_1, lista_2):
     S1 = set(lista_1)
     S2 = set(lista_2)
-    print(S1)
-    print(S2)
-    return S1.intersection(S2)
+    if S1.intersection(S2) == set():
+        return False
+    return True
 
 assert superposicion_loop(['a','b','c','d','e'],['z','x','y','d']) == True
 assert superposicion_loop(['a','b','c','d','e'],['z','x','y','h']) == False
