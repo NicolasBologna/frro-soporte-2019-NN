@@ -11,6 +11,6 @@ def es_palindromo(palabra):
 
 assert (es_palindromo("arenera")) == True
 assert (es_palindromo("areneras")) == False
-assert (es_palindromo("radar")) == False
-assert (es_palindromo("ojo")) == False
-assert (es_palindromo("salas")) == False
+assert (es_palindromo("radar")) == True
+assert (es_palindromo("ojo")) == True
+assert (es_palindromo("salas")) == True
