@@ -5,4 +5,15 @@
 # hola -> ho
 # verde -> ver
 def mitad(palabra):
-    pass
+    if len(palabra) % 2 == 0:
+        long = len(palabra) // 2
+    else:
+        long = (len(palabra) // 2)+1
+    return palabra[:long]
+
+
+assert mitad("papa") == 'pa'
+assert mitad("papap") == 'pap'
+assert mitad("prueba") == 'pru'
+assert mitad("hola") == 'ho'
+assert mitad("verde") == 'ver'

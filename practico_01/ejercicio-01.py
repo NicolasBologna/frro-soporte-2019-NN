@@ -2,4 +2,13 @@
 
 
 def maximo(a, b):
-    pass
+    if a != b:
+        if a < b:
+            return b
+        return a
+    return a
+
+
+assert maximo(10, 2) == 10
+assert maximo(3,12) == 12
+assert maximo(4,4) == 4

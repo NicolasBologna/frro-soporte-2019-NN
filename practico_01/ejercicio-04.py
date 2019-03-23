@@ -3,4 +3,11 @@
 
 
 def conversor(grados):
-    pass
+    return (grados * 9/5) + 32
+
+
+var = input("Ingrese la temperatura en grados celsius: ")
+var = conversor(int(var))
+print("La temperatura en grados fahrenheit es: " + str(var))
+
+
