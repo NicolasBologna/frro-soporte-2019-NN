@@ -12,4 +12,4 @@ class Rectangulo:
 
 
 rec = Rectangulo(3,3)
-print(rec.area())
+assert(rec.area()) == 9

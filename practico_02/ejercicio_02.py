@@ -8,11 +8,11 @@ class Circulo:
         self.radio = radio
 
     def area(self):
-        return pi * (self.radio**2)
+        return round(pi * (self.radio**2),2)
 
     def perimetro(self):
-        return 2*pi*self.radio
+        return round(2*pi*self.radio,2)
 
 cir = Circulo(3)
-print(cir.area())
-print(cir.perimetro())
+assert(cir.area()) == 28.27
+assert(cir.perimetro()) == 18.85
