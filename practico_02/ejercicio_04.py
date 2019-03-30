@@ -11,7 +11,7 @@
 # (basándose en el año actual).
 
 from practico_02.ejercicio_03 import Persona
-from datetime import datetime, date
+from datetime import  date
 
 
 class Estudiante(Persona):

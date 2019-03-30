@@ -7,10 +7,11 @@ from practico_02.ejercicio_04 import Estudiante
 
 est1 = Estudiante('ISI', 2016, 36, 17,'Nicolas', 22, 'H', 93, 1.76)
 est2 = Estudiante('ISI', 2014, 36, 26,'Lucas', 24, 'H', 90, 1.80)
+est5 = Estudiante('ISI', 2011, 36, 20,'Jeronimo', 21, 'H', 70, 1.90)
 est3 = Estudiante('IQ', 2015, 32, 29,'Facundo', 30, 'M', 80, 1.40)
 est4 = Estudiante('IM', 2011, 37, 14,'Rodrigo', 20, 'H', 90, 1.80)
 
-estudiantes = [est1,est2,est3,est4]
+estudiantes = [est1,est2,est3,est4,est5]
 
 dicc = {}
 
@@ -23,5 +24,5 @@ def organizar_estudiantes(estudiantes):
 
     return dicc
 
-assert(organizar_estudiantes(estudiantes)) == {'ISI': 2, 'IQ': 1, 'IM': 1}
+assert(organizar_estudiantes(estudiantes)) == {'ISI': 3, 'IQ': 1, 'IM': 1}
 
