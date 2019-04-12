@@ -2,13 +2,23 @@
 # y devuelva los datos ingresados el id del nuevo registro.
 
 import datetime
+import sqlite3
 
 from practico_03.ejercicio_01 import reset_tabla
 
 
 def agregar_persona(nombre, nacimiento, dni, altura):
-    return 0
+    db = sqlite3.connect('usuarios')
+    cursor = db.cursor()
+    cSQL = 'INSERT INTO Persona(Nombre,FechaNacimiento,Dni,Altura) VALUES (?,?,?,?)'
+    tdatos = (nombre, nacimiento,dni,altura)
 
+    cursor.execute(cSQL, tdatos)
+    id =  cursor.lastrowid
+    db.commit()
+    db.close()
+    
+    return id
 
 @reset_tabla
 def pruebas():
