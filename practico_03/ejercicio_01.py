@@ -33,6 +33,7 @@ def borrar_tabla():
     cursor.execute(cSQL)
 
     db.commit()
+
     db.close()
 
 # no modificar
@@ -43,4 +44,4 @@ def reset_tabla(func):
         borrar_tabla()
     return func_wrapper
 
-crear_tabla()
+borrar_tabla()
