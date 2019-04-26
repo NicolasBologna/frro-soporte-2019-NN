@@ -8,13 +8,39 @@
 # - False en caso de no cumplir con alguna validacion.
 
 import datetime
+import sqlite3
 
 from practico_03.ejercicio_02 import agregar_persona
 from practico_03.ejercicio_06 import reset_tabla
+from practico_03.ejercicio_04 import buscar_persona
+
 
 
 def agregar_peso(id_persona, fecha, peso):
-    pass
+
+    db = sqlite3.connect('usuarios')
+    cursor = db.cursor()
+
+    def insertar():
+        cSQL = 'INSERT OR IGNORE INTO PersonaPeso(IdPersona,Fecha,Peso) VALUES (?,?,?)'
+        tdatos = (id_persona, fecha,peso)
+        cursor.execute(cSQL, tdatos)
+        id =  cursor.lastrowid
+        db.commit()
+        db.close()
+        return id
+    if buscar_persona(id_persona):
+        cSQL = "SELECT MAX(PersonaPeso.Fecha) FROM PersonaPeso WHERE PersonaPeso.IdPersona = (?)"
+        tdatos = (id_persona,)
+        cursor.execute(cSQL,tdatos)
+        ult_fecha=cursor.fetchone()
+
+        if  (ult_fecha[0] is not None):
+            if (datetime.datetime.strptime(ult_fecha[0], '%Y-%m-%d %H:%M:%S') <= fecha):
+                return insertar()
+        elif (ult_fecha[0] is None):
+            return insertar()
+    return False
 
 
 @reset_tabla

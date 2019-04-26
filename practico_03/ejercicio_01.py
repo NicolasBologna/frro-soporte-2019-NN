@@ -44,4 +44,3 @@ def reset_tabla(func):
         borrar_tabla()
     return func_wrapper
 
-borrar_tabla()
