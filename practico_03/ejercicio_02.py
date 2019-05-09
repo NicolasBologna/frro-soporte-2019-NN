@@ -4,8 +4,10 @@
 import datetime
 
 from practico_03.ejercicio_01 import reset_tabla
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String
 
-
+Base = declarative_base()
 def agregar_persona(nombre, nacimiento, dni, altura):
     return 0
 
