@@ -14,6 +14,9 @@ from practico_03.ejercicio_01 import engine, Persona, reset_tabla
 def buscar_persona(id_persona):
     Session = sessionmaker(bind=engine)
 
+    # create a Session
+    session = Session()
+
     try:
         # create a Session
         session = Session()
@@ -21,9 +24,9 @@ def buscar_persona(id_persona):
         rta = (persona.IdPersona,persona.Nombre,persona.FechaNacimiento,persona.DNI,persona.Altura)
     except:
         rta = False
-    finally:
-        session.close()
-        return rta
+
+    session.close()
+    return rta
 
 @reset_tabla
 def pruebas():

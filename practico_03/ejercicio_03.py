@@ -31,7 +31,8 @@ def borrar_persona(id_persona):
         rta = False
     finally:
         session.close()
-        return rta
+    
+    return rta
 
 
 @reset_tabla

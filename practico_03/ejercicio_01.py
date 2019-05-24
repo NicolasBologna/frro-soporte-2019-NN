@@ -15,7 +15,7 @@ import sqlite3
 
 from sqlalchemy.orm import relationship
 
-engine = create_engine('sqlite:///sqlalchemy_ejemplo.db', echo=True) #cambiar a True para ver el log
+engine = create_engine('sqlite:///sqlalchemy_ejemplo.db', echo=False) #cambiar a True para ver el log
 
 Base = declarative_base()
 
@@ -26,7 +26,6 @@ class Persona(Base):
     FechaNacimiento =  Column(DateTime)
     DNI = Column(INT)
     Altura = Column(INT)
-    children = relationship("PersonaPeso")
 
 
 def crear_tabla():
