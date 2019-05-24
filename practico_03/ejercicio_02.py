@@ -3,14 +3,28 @@
 
 import datetime
 
-from practico_03.ejercicio_01 import reset_tabla
+from sqlalchemy.orm import sessionmaker
+
+from practico_03.ejercicio_01 import engine, Persona, reset_tabla
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String
+
 
 Base = declarative_base()
-def agregar_persona(nombre, nacimiento, dni, altura):
-    return 0
 
+def agregar_persona(nombre, nacimiento, dni, altura):
+
+    Session = sessionmaker(bind=engine)
+
+    # create a Session
+    session = Session()
+
+    # work with sess
+    persona =  Persona(Nombre=nombre, FechaNacimiento=nacimiento,DNI=dni,Altura=altura)
+    session.add(persona)
+    session.commit()
+    session.refresh(persona)
+    id = persona.IdPersona
+    return id
 
 @reset_tabla
 def pruebas():

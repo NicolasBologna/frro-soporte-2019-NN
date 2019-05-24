@@ -9,12 +9,34 @@
 
 import datetime
 
+from sqlalchemy import create_engine, func
+from sqlalchemy.orm import sessionmaker
+
 from practico_03.ejercicio_02 import agregar_persona
-from practico_03.ejercicio_06 import reset_tabla
+from practico_03.ejercicio_06 import reset_tabla, PersonaPeso
+from practico_03.ejercicio_04 import buscar_persona
+
+engine = create_engine('sqlite:///sqlalchemy_ejemplo.db', echo=False) #cambiar a True para ver el log
 
 
 def agregar_peso(id_persona, fecha, peso):
-    pass
+    Session = sessionmaker(bind=engine)
+
+    # create a Session
+    session = Session()
+
+    if buscar_persona(id_persona) != False:
+        # work with sess
+
+        personasPesos = session.query(func.max(PersonaPeso)).filter(PersonaPeso.persona == id_persona).all()
+        print(personasPesos)
+
+        persona =  Persona(Nombre=nombre, FechaNacimiento=nacimiento,DNI=dni,Altura=altura)
+        session.add(persona)
+        session.commit()
+        session.refresh(persona)
+        id = persona.IdPersona
+        return id
 
 
 @reset_tabla
