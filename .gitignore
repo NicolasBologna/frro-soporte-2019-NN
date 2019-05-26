@@ -102,3 +102,4 @@ ENV/
 
 .idea
 practico_03/Usuarios
+practico_03/sqlalchemy_ejemplo.db
