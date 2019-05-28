@@ -2,22 +2,8 @@
 
 
 def mayor(a, b, c):
-    if a > b or a == b:
-        if a > c or a == c:
-            return a
-        else:
-            return c
-    else:
-        if b > c:
-            return b
-        else:
-            return c
+    pass
 
-assert mayor(1,2,3) == 3
-assert mayor(1,3,2) == 3
-assert mayor(3,1,2) == 3
-assert mayor(2,3,3) == 3
-assert mayor(3,2,3) == 3
-assert mayor(3,3,2) == 3
-assert mayor(3,3,3) == 3
-
+# si no falla es porque esta bien
+assert maximo(1,10,5) == 10
+assert maximo(4,9,18) == 18
