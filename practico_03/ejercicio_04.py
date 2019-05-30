@@ -3,14 +3,30 @@
 # Si no encuentra ningun registro, devuelve False.
 
 import datetime
+from pprint import pprint
 
 from practico_03.ejercicio_01 import reset_tabla
 from practico_03.ejercicio_02 import agregar_persona
+from sqlalchemy.orm import sessionmaker
+from practico_03.ejercicio_01 import engine, Persona, reset_tabla
 
 
 def buscar_persona(id_persona):
-    return False
+    Session = sessionmaker(bind=engine)
 
+    # create a Session
+    session = Session()
+
+    try:
+        # create a Session
+        session = Session()
+        persona = session.query(Persona).filter(Persona.IdPersona==id_persona).first()
+        rta = (persona.IdPersona,persona.Nombre,persona.FechaNacimiento,persona.DNI,persona.Altura)
+    except:
+        rta = False
+
+    session.close()
+    return rta
 
 @reset_tabla
 def pruebas():

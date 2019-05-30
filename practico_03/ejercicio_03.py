@@ -3,12 +3,36 @@
 
 import datetime
 
-from practico_03.ejercicio_01 import reset_tabla
 from practico_03.ejercicio_02 import agregar_persona
+
+import datetime
+
+from sqlalchemy.orm import sessionmaker
+
+from practico_03.ejercicio_01 import engine, Persona, reset_tabla
+from sqlalchemy.ext.declarative import declarative_base
 
 
 def borrar_persona(id_persona):
-    return False
+    Session = sessionmaker(bind=engine)
+
+    # create a Session
+    session = Session()
+    try:
+        # work with sess
+        persona = session.query(Persona).filter(Persona.IdPersona==id_persona).first()
+
+        session.delete(persona)
+        session.commit()
+
+        rta = True
+    except:
+        session.rollback()
+        rta = False
+    finally:
+        session.close()
+    
+    return rta
 
 
 @reset_tabla

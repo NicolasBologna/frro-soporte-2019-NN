@@ -16,20 +16,38 @@
 
 import datetime
 
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
 from practico_03.ejercicio_02 import agregar_persona
-from practico_03.ejercicio_06 import reset_tabla
+from practico_03.ejercicio_04 import buscar_persona
+from practico_03.ejercicio_06 import reset_tabla, PersonaPeso
 from practico_03.ejercicio_07 import agregar_peso
+
+engine = create_engine('sqlite:///sqlalchemy_ejemplo.db', echo=False)
 
 
 def listar_pesos(id_persona):
-    return []
+    Session = sessionmaker(bind=engine)
+
+    # create a Session
+    session = Session()
+    if buscar_persona(id_persona) != False:
+        personasPesos = session.query(PersonaPeso).filter(PersonaPeso.IdPersona == id_persona).all()
+        lista=[]
+        for persona_peso in personasPesos:
+            lista.append(tuple([str(persona_peso.Fecha),persona_peso.Peso]))
+        return lista
+
+    else:
+        return False
 
 
 @reset_tabla
 def pruebas():
     id_juan = agregar_persona('juan perez', datetime.datetime(1988, 5, 15), 32165498, 180)
-    agregar_peso(id_juan, datetime.datetime(2018, 5, 1), 80)
-    agregar_peso(id_juan, datetime.datetime(2018, 6, 1), 85)
+    agregar_peso(id_juan, datetime.date(2018, 5, 1), 80)
+    agregar_peso(id_juan, datetime.date(2018, 6, 1), 85)
     pesos_juan = listar_pesos(id_juan)
     pesos_esperados = [
         ('2018-05-01', 80),

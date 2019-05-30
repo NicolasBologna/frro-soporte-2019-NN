@@ -3,13 +3,36 @@
 
 import datetime
 
-from practico_03.ejercicio_01 import reset_tabla
+from practico_03.ejercicio_01 import engine, Persona, reset_tabla
 from practico_03.ejercicio_02 import agregar_persona
 from practico_03.ejercicio_04 import buscar_persona
+from sqlalchemy.orm import sessionmaker
+
 
 
 def actualizar_persona(id_persona, nombre, nacimiento, dni, altura):
-    return False
+    Session = sessionmaker(bind=engine)
+
+    # create a Session
+    session = Session()
+    try:
+        # work with sess
+        per = session.query(Persona).filter(Persona.IdPersona == id_persona).first()
+
+        if per != None:
+            session.query(Persona).filter(Persona.IdPersona == id_persona).update({"Nombre": nombre,"FechaNacimiento":nacimiento, "DNI" : dni ,"Altura" : altura})
+
+            session.commit()
+
+            rta = True
+        else:
+            rta = False
+    except:
+        session.rollback()
+        rta = False
+    finally:
+        session.close()
+        return rta
 
 
 @reset_tabla
