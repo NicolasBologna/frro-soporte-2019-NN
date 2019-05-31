@@ -78,11 +78,11 @@ def form_modificacion():
     otra_ventana = tk.Toplevel(main_window) #creo una nueva ventana
     main_window.iconify() #minimizo la principal
     elem = app.treeview.focus()
-    elem_child = app.treeview.focus()
-    print (app.treeview.item(elem))
+    elem_child = app.treeview.get_children(elem) #app.treeview.selection()[0]
+    print (app.treeview.item(elem_child))
     txt_ciudad = tk.StringVar(otra_ventana, value=app.treeview.item(elem)['text']) #instancio las variables para los entry
 
-    txt_CP = tk.StringVar(otra_ventana, value=app.treeview.item(elem)['text'])
+    txt_CP = tk.StringVar(otra_ventana, value=app.treeview.item(elem_child)['text'])
     label = tk.Label(otra_ventana, text="Ciudad: ")
     label2 = tk.Label(otra_ventana, text="Código Postal: ")
     label.grid(column=1, row=1, padx=(50,50), pady=(10,10))
@@ -96,13 +96,13 @@ def form_modificacion():
 
     btn_alta = tk.Button(otra_ventana, text="Modificar")
     btn_alta.grid(column=3, row=2, padx=(50,50), pady=(10,10))
-    def alta(event):
-        print(Ciudad.get())
-        item = app.treeview.insert("", tk.END, text=Ciudad.get())
-        app.treeview.insert(item, tk.END, text=CP.get())
+    def modificacion(event):
+        print(Ciudad.get(),CP.get())
+        app.treeview.item(elem,text=Ciudad.get()) #.update(Ciudad.get())
+        app.treeview.item(elem_child,text=CP.get())
         main_window.deiconify()
 
-    btn_alta.bind("<Button-1>", alta)
+    btn_alta.bind("<Button-1>", modificacion)
 
 btn_frm_alta = tk.Button(main_window, text="Modificar", command=form_modificacion)
 btn_frm_alta.pack()
