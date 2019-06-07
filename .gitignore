@@ -103,3 +103,4 @@ ENV/
 .idea
 practico_03/Usuarios
 practico_03/sqlalchemy_ejemplo.db
+practico_04/ejercicio04_bk.py
