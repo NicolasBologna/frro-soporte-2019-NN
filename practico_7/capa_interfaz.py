@@ -103,11 +103,9 @@ def form_modificacion():
     #main_window.iconify() #minimizo la principal
     elem = app.treeview.focus()
     curItem = app.treeview.item(elem)
-    print(curItem)
     txt_nombre = tk.StringVar(frm_modificacion, value=curItem['values'][0]) #instancio las variables para los entry
     txt_apellido = tk.StringVar(frm_modificacion, value=curItem['values'][1])
     txt_dni = tk.StringVar(frm_modificacion, value=curItem['values'][2])
-    print(txt_apellido.get())
     label = tk.Label(frm_modificacion, text="Nombre: ")
     label2 = tk.Label(frm_modificacion, text="Apellido: ")
     label3 = tk.Label(frm_modificacion, text="DNI: ")
