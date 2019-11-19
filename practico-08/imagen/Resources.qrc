@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="prueba">
+    <file>costello.jpeg</file>
+  </qresource>
+</RCC>
